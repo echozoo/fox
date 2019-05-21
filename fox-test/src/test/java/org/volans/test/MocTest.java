@@ -13,7 +13,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 /**
  * @author <a href="http://github.com/athc">dujf</a>
@@ -68,6 +70,7 @@ public class MocTest extends BaseTest {
         .header("AAA", "AAA")
     )
         .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(content().string(equalTo("Hello World")))
         .andDo(MockMvcResultHandlers.print())
         .andReturn();
     String res = mvcResult.getResponse().getContentAsString();

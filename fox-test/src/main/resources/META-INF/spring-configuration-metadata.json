@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "abc.accesskey",
+      "type": "java.lang.String",
+      "description": "access_key"
+    },
+    {
+      "name": "abc.securityKey",
+      "type": "java.lang.String",
+      "description": "access_key"
+    },
+    {
+      "name": "abc.def.key",
+      "type": "java.lang.String",
+      "description": "abc key"
+    },
+    {
+      "name": "abc.def.value",
+      "type": "java.lang.String",
+      "description": "abc value"
+    }
+  ]
+}

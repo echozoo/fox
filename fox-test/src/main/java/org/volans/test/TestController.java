@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.volans.test.config.DemoConfig;
 
 /**
  * @author <a href="http://github.com/athc">dujf</a>
@@ -19,10 +20,17 @@ public class TestController {
 
   private final TestService testService;
 
-  @Autowired public TestController(TestService testService) {this.testService = testService;}
+  private final DemoConfig demoConfig;
+
+  @Autowired public TestController(TestService testService, DemoConfig demoConfig) {
+    this.testService = testService;
+    this.demoConfig = demoConfig;
+  }
 
   @GetMapping
   public String helloWorld() {
+    String ak = demoConfig.getDemoProperties().getAccessKey();
+    String sk = demoConfig.getDemoProperties().getSecurityKey();
     return testService.getHelloWorld();
   }
 
