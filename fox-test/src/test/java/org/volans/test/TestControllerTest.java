@@ -2,8 +2,6 @@ package org.volans.test;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 
 /**
  * @author <a href="http://github.com/athc">dujf</a>
@@ -12,13 +10,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
  */
 public class TestControllerTest extends BaseTest {
 
-  @Autowired
-  private TestRestTemplate restTemplate;
-
   @Test
   public void helloWorld() {
-    String res = restTemplate.getForEntity("/test", String.class).getBody();
-    Assert.assertNotNull(res);
   }
 
 }
