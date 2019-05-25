@@ -15,7 +15,11 @@
     <description>fox-test</description>
 
     <properties>
+        <!--docker镜像tag -->
+        <global_version>1.0.0</global_version>
         <java.version>1.8</java.version>
+        <docker.image.prefix>athio</docker.image.prefix>
+        <dockerfile.plugin.version>1.4.10</dockerfile.plugin.version>
     </properties>
 
     <dependencies>
@@ -27,7 +31,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -44,19 +47,55 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-        </dependency>
     </dependencies>
 
+    <!--mvn clean package dockerfile:build-->
     <build>
         <plugins>
+            <!--<plugin>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<groupId>com.spotify</groupId>-->
+            <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
+            <!--<version>${dockerfile.plugin.version}</version>-->
+            <!--<configuration>-->
+            <!--<repository>${docker.image.prefix}/${project.artifactId}</repository>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!--jib 构建插件-->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>0.9.8</version>
+                <!--加了这段代码，构建命令 使用mvn package 否则 使用mvn compile jib:dockerBuild -->
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <!--加了这段代码，构建命令 使用mvn package 否则 使用mvn compile jib:dockerBuild -->
+                <configuration>
+                    <from>
+                        <image>openjdk:8-jre-alpine</image>
+                    </from>
+                    <!--构建的images 名字 和 tag(自定义)-->
+                    <to>
+                        <image>${docker.image.prefix}/${project.artifactId}:${global_version}
+                        </image>
+                    </to>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
