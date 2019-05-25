@@ -23,6 +23,7 @@
         <module>fox-es</module>
         <module>fox-kafka</module>
         <module>fox-test</module>
+        <module>fox-file</module>
     </modules>
 
     <properties>
