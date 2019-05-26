@@ -17,6 +17,9 @@
     <properties>
         <java.version>1.8</java.version>
         <docker.image.prefix>athio</docker.image.prefix>
+        <image.tag>1.0.0</image.tag>
+        <dockerfile.plugin.version>1.4.10</dockerfile.plugin.version>
+
     </properties>
 
     <dependencies>
@@ -24,7 +27,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -43,17 +49,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- Docker maven plugin -->
             <plugin>
                 <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
+                <artifactId>dockerfile-maven-plugin</artifactId>
                 <configuration>
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>/</dockerDirectory>
+                    <tag>${image.tag}</tag>
+                    <repository>
+                        ${docker.image.prefix}/${project.artifactId}
+                    </repository>
+                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                 </configuration>
             </plugin>
-            <!-- Docker maven plugin -->
         </plugins>
     </build>
 </project>

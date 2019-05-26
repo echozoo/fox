@@ -52,18 +52,6 @@
     <!--mvn clean package dockerfile:build-->
     <build>
         <plugins>
-            <!--<plugin>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-            <!--<groupId>com.spotify</groupId>-->
-            <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
-            <!--<version>${dockerfile.plugin.version}</version>-->
-            <!--<configuration>-->
-            <!--<repository>${docker.image.prefix}/${project.artifactId}</repository>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -89,7 +77,8 @@
                     </from>
                     <!--构建的images 名字 和 tag(自定义)-->
                     <to>
-                        <image>${docker.image.prefix}/${project.artifactId}:${global_version}
+                        <image>
+                            ${docker.image.prefix}/${project.artifactId}:${global_version}
                         </image>
                     </to>
                 </configuration>
