@@ -22,12 +22,10 @@ public class LoginLogDomainTests extends BaseTest {
 
   @Test
   public void create() {
-    for (int i = 0; i < 1000; i++) {
       LoginLog loginLog = domain.create(
           new LoginLog(System.currentTimeMillis(), "login_Log" + Math.random(), System.currentTimeMillis() + "要使用指定相应的分词器" + System.currentTimeMillis(), System.currentTimeMillis() + "本文原创发布于慕课网" + System.currentTimeMillis(), System.currentTimeMillis())
       );
       Assertions.assertNotNull(loginLog);
-    }
   }
 
   /**
