@@ -1,5 +1,6 @@
 package org.volans.es;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -12,10 +13,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * BUG: 虫子
  */
 @SpringBootApplication
+@EnableSwagger2Doc
 public class FoxEsApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(FoxEsApplication.class, args);
+    String lines = "==========================";
+    System.out.println(lines + "\nhttp://127.0.0.1:8010/swagger-ui.html\n" + lines);
   }
 
 }

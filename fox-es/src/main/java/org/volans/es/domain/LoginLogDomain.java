@@ -1,6 +1,5 @@
 package org.volans.es.domain;
 
-import java.util.ArrayList;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +26,10 @@ public class LoginLogDomain {
 
   public Iterable<LoginLog> all() {
     return logRepository.findAll();
+  }
+
+  public Page<LoginLog> page(Pageable pageable) {
+    return logRepository.findAll(pageable);
   }
 
   public Page<LoginLog> search(QueryBuilder builder, Pageable pageable) {

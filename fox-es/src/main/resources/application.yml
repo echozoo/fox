@@ -1,0 +1,16 @@
+server:
+  port: 8010
+
+spring:
+  data:
+    elasticsearch:
+#      cluster-nodes: 192.168.1.3:9300
+      cluster-nodes: 10.0.0.32:9300
+
+swagger:
+  base-package: org.volans.es.controller
+
+logging:
+  level:
+    org.volans.es.repo: debug
+    root: INFO
