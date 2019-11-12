@@ -8,8 +8,8 @@ import lombok.Data;
  * @since JDK1.8
  */
 public class Message {
-  private String title;
-  private String content;
+    private String title;
+    private String content;
 
     public String getTitle() {
         return title;

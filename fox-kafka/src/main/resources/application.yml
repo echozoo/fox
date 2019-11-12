@@ -4,7 +4,7 @@ spring:
   kafka:
     bootstrap-servers: 127.0.0.1:2181
     consumer:
-      group-id: xstar
+      #      group-id: xstar
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
@@ -13,3 +13,5 @@ spring:
 
 
 
+kafka:
+  servers: 10.0.0.32:9092

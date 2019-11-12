@@ -23,27 +23,27 @@ public class KafkaApplication {
         return new NewTopic("testTopic", 10, (short) 2);
     }
 
-    @Bean
-    public ApplicationRunner runner(Producer producer) {
-        Message message = new Message();
-        message.setContent("content");
-        message.setTitle("title");
-        return (args) -> producer.send(message);
-    }
+//    @Bean
+//    public ApplicationRunner runner(Producer producer) {
+//        Message message = new Message();
+//        message.setContent("content");
+//        message.setTitle("title");
+//        return (args) -> producer.send(message);
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(KafkaApplication.class, args);
     }
 
-    @Autowired
-    private Producer producer;
+//    @Autowired
+//    private Producer producer;
 
 
-    @PostMapping
-    public void send() {
-        Message message = new Message();
-        message.setContent("content");
-        message.setTitle("title");
-        producer.send(message);
-    }
+//    @PostMapping
+//    public void send() {
+//        Message message = new Message();
+//        message.setContent("content");
+//        message.setTitle("title");
+//        producer.send(message);
+//    }
 }
