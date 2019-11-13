@@ -60,7 +60,7 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>0.9.8</version>
+                <version>1.6.1</version>
                 <!--加了这段代码，构建命令 使用mvn package 否则 使用mvn compile jib:dockerBuild -->
                 <executions>
                     <execution>
