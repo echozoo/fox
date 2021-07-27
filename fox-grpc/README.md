@@ -22,8 +22,10 @@ gRPC 是一个现代的开源远程过程调用 (RPC) 框架，可以在任何�
 
 ## java 接入 grpc
 ### GRPC服务端
+* 
 
 ### GRPC客户端
+* 创建messagedChannel
 
 
 ## 其他
