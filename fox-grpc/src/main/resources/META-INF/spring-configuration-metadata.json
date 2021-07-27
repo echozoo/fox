@@ -1,0 +1,25 @@
+{
+  "groups": [
+    {
+      "sourceType": "com.echozoo.grpc.config.server.GrpcServerProperties",
+      "defaultValue": "50051",
+      "name": "grpc.server.port",
+      "description": "grpc端口号",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.echozoo.grpc.config.client.GrpcClientProperties",
+      "defaultValue": "127.0.0.1",
+      "name": "grpc.client.host",
+      "description": "grpc client host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.echozoo.grpc.config.client.GrpcClientProperties",
+      "defaultValue": "50051",
+      "name": "grpc.client.port",
+      "description": "grpc port",
+      "type": "java.lang.String"
+    }
+  ]
+}

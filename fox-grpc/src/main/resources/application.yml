@@ -1,0 +1,20 @@
+server:
+  port: 8001
+
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: springfox swagger 3.0整合Demo
+  try-host: http://localhost:${server.port}
+spring:
+  application:
+    name: grpc
+
+
+grpc:
+  server:
+    port: 8090
+  client:
+    host: 127.0.0.1
+    port: 8090

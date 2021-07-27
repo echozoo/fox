@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+//    package与java_package有些不同，
+//    java_package是定义编译生成的java文件所在的目录，
+//    package是对应的java类的命名空间
+package proto;
+
+option java_package = "com.echozoo.grpc";
+
+//编译后会生成多个Message类，并没有被包含在HelloWorldServiceProto.java文件中,反之,生成单一HelloWorldServiceProto.java文件
+//option java_multiple_files = true;
+
+
+service FooService{
+  rpc listFoo(FooInput) returns (FooOutput){};
+}
+
+message FooInput{
+  string name = 1;
+}
+
+message FooOutput{
+  string message = 1;
+}

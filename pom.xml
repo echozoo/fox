@@ -24,6 +24,8 @@
         <module>fox-kafka</module>
         <module>fox-test</module>
         <module>fox-file</module>
+        <module>fox-grpc</module>
+        <module>fox-scheduler</module>
     </modules>
 
     <properties>
