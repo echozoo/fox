@@ -12,7 +12,7 @@
     <groupId>org.volans</groupId>
     <artifactId>fox-scheduler</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fox-scheduler</name>
+    <name>scheduler</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
