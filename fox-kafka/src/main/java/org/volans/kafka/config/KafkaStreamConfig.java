@@ -13,14 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019-10-31
  * @since JDK1.8
  */
-@Configuration
 public class KafkaStreamConfig {
 
-    @Bean
-    @ConditionalOnMissingBean
-    public AdminClient adminClient() {
-        Properties props = new Properties();
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.0.32:9092");
-        return AdminClient.create(props);
-    }
 }
+

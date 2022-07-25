@@ -2,7 +2,7 @@ server:
   port: 8010
 spring:
   kafka:
-    bootstrap-servers: 127.0.0.1:2181
+    bootstrap-servers: 110.42.252.43:9093,110.42.252.43:9094,110.42.252.43:9095
     consumer:
       #      group-id: xstar
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -14,4 +14,4 @@ spring:
 
 
 kafka:
-  servers: 10.0.0.32:9092
+  servers: 110.42.252.43:9093,110.42.252.43:9094,110.42.252.43:9095

@@ -27,6 +27,7 @@
         <module>fox-grpc</module>
         <module>fox-scheduler</module>
         <module>fox-hbase</module>
+        <module>fox-webflux</module>
     </modules>
 
     <properties>
