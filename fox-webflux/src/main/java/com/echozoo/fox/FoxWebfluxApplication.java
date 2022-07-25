@@ -1,26 +1,16 @@
 package com.echozoo.fox;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
 
-import java.util.List;
-
-
+@Log4j2
 @SpringBootApplication
-@RestController
 public class FoxWebfluxApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FoxWebfluxApplication.class, args);
+        log.info("接口文档地址：{}", "http://localhost:8000/swagger-ui/index.html");
     }
 
-
-    @GetMapping("/test/{name}")
-    Flux<String> files(@PathVariable String name) {
-        return Flux.fromIterable(List.of("hello world"));
-    }
 }
