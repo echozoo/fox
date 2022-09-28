@@ -29,7 +29,6 @@ public class FooController {
     @GetMapping("/foo/test")
     Mono<String> test(@RequestParam String name) {
         Stream.generate(() -> "1").limit(100).forEach(System.out::println);
-
         return Mono.create(it -> it.success(name));
     }
 
@@ -58,8 +57,4 @@ public class FooController {
         return Mono.just(Boolean.TRUE);
     }
 
-
-    public static void main(String[] args) {
-        new FooController().test("1");
-    }
 }
