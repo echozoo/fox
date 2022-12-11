@@ -8,9 +8,18 @@ import lombok.Data;
  * @since JDK1.8
  */
 
-@Data
 public class DemoConfig {
 
   private DemoProperties demoProperties;
 
+  public DemoProperties getDemoProperties() {
+    return demoProperties;
+  }
+
+  public void setDemoProperties(DemoProperties demoProperties) {
+    this.demoProperties = demoProperties;
+  }
+
+  public DemoConfig() {
+  }
 }

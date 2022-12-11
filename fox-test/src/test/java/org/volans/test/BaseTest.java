@@ -14,6 +14,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class BaseTest {
 
-  @Test
-  public void init() {}
+    @Test
+    public void init() {
+    }
+
 }
+
+

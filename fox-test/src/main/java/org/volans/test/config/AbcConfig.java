@@ -11,4 +11,12 @@ import lombok.Data;
 public class AbcConfig {
 
   private AbcProperties abcProperties;
+
+  public AbcProperties getAbcProperties() {
+    return abcProperties;
+  }
+
+  public void setAbcProperties(AbcProperties abcProperties) {
+    this.abcProperties = abcProperties;
+  }
 }

@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class TestService {
 
   String getHelloWorld() {
+
+    // 原子性 有序性
     return "hello world";
   }
 }
