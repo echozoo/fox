@@ -30,7 +30,7 @@ public class EasyExcelTest {
             // 这里注意 如果同一个sheet只要创建一次
             WriteSheet writeSheet = EasyExcel.writerSheet("模板").build();
             // 去调用写入,这里我调用了五次，实际使用时根据数据库分页的总的页数来
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 12; i++) {
                 // 分页去数据库查询数据 这里可以去数据库查询每一页的数据
                 List<DemoData> data = data();
                 excelWriter.write(data, writeSheet);

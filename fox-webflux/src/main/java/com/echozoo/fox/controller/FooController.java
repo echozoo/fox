@@ -28,7 +28,9 @@ public class FooController {
 
     @GetMapping("/foo/test")
     Mono<String> test(@RequestParam String name) {
-        Stream.generate(() -> "1").limit(100).forEach(System.out::println);
+//        Stream.generate(() -> "1").limit(100).forEach(it -> {
+        System.out.println("输出一个数字：" + System.currentTimeMillis());
+//        });
         return Mono.create(it -> it.success(name));
     }
 
