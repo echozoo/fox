@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+  <!--引入默认的一些设置-->
+  <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+  <springProperty scop="context" name="appName" source="spring.application.name"
+    defaultValue="undefined"/>
+  <property name="log.path" value="logs/${appName}"/>
+  <!-- 日志输出格式 -->
+  <springProperty scope="context" name="spring_application_name" source="spring.application.name" />
+  <springProperty scope="context" name="kafka_broker" source="spring.kafka.bootstrap-servers" defaultValue="none"/>
+
+  <!-- 本地日志打印-->
+  <appender name="local_stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [reqId:%X{reqId}] [%thread]  %-5level %logger - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- 控制台 JSON 日志输出 -->
+  <appender name="stdout_json" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+      <includeMdcKeyName>reqId</includeMdcKeyName>
+      <fieldNames>
+        <timestamp>timestamp</timestamp>
+        <level>level</level>
+        <logger>logger</logger>
+        <thread>thread</thread>
+        <message>message</message>
+        <stackTrace>stack_trace</stackTrace>
+      </fieldNames>
+    </encoder>
+  </appender>
+
+  <appender name="FILE_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>logs/app.json</file>
+    <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>logs/app-%d{yyyy-MM-dd}.json</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="kafka_log" class="com.github.danielwegener.logback.kafka.KafkaAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>{"timestamp": "%d{ISO8601}", "level": "%level", "logger": "%logger", "thread": "%thread", "message": "%msg%n"}</pattern>
+    </encoder>
+    <topic>${spring_application_name}_log</topic>
+    <keyingStrategy class="com.github.danielwegener.logback.kafka.keying.HostNameKeyingStrategy" />
+    <deliveryStrategy class="com.github.danielwegener.logback.kafka.delivery.AsynchronousDeliveryStrategy" />
+    <producerConfig>bootstrap.servers=${kafka_broker}</producerConfig>
+    <!-- don't wait for a broker to ack the reception of a batch.  -->
+    <producerConfig>acks=0</producerConfig>
+    <!-- wait up to 1000ms and collect log messages before sending them as a batch -->
+    <producerConfig>linger.ms=100</producerConfig>
+    <!-- even if the producer buffer runs full, do not block the application but start to drop messages -->
+    <producerConfig>max.block.ms=0</producerConfig>
+    <!-- Optional parameter to use a fixed partition -->
+<!--    <partition>8</partition>-->
+  </appender>
+
+  <!-- 本地环境只打印到控制台 -->
+  <springProfile name="dev">
+    <root level="info">
+<!--      <appender-ref ref="kafka_log"/>-->
+      <appender-ref ref="local_stdout"/>
+    </root>
+  </springProfile>
+  <!-- 非本地环境，输出Json日志，输出到文件 -->
+  <springProfile name="!dev">
+    <root level="info">
+      <appender-ref ref="stdout_json"/>
+    </root>
+  </springProfile>
+
+
+</configuration>

@@ -3,6 +3,7 @@ package com.echozoo.foxlottery.config;
 import com.alibaba.nacos.api.config.annotation.NacosConfigListener;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 /**
