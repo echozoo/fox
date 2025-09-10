@@ -14,12 +14,12 @@ public class TestController {
     private OrderMapper orderMapper;
 
     @PostMapping("/test/insert")
-    public void inset(){
-        for (int i = 0; i < 100; i++) {
+    public void inset() {
+        for (int i = 0; i < 10000; i++) {
             TOrderPO tOrderPO = new TOrderPO();
             tOrderPO.setStatus("PENDING");
-            tOrderPO.setUserId(i);
-            tOrderPO.setOrderId((long)i);
+            tOrderPO.setUserId((int) System.currentTimeMillis() % 1234567);
+            tOrderPO.setOrderId((long) i);
             orderMapper.insert(tOrderPO);
         }
     }

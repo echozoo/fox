@@ -1,0 +1,50 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: test,test1,test2
+      test:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/test
+        username: root
+        password: 123456
+      test1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/test1
+        username: root
+        password: 123456
+      test2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/test2
+        username: root
+        password: 123456
+    rules:
+      sharding:
+        tables:
+          t_order:
+            actual-data-nodes: test.t_order_$->{0..2},test1.t_order_$->{0..2},test2.t_order_$->{0..2}
+            database-strategy:
+              standard:
+                sharding-column: user_id
+                sharding-algorithm-name: db-inline
+            table-strategy:
+              standard:
+                sharding-column: order_id
+                sharding-algorithm-name: order-inline
+            key-generate-strategy:
+              column: order_id
+              key-generator-name: snowflake
+        sharding-algorithms:
+          db-inline:
+            type: INLINE
+            props:
+              algorithm-expression: "test$->{user_id % 3 == 0 ? \"\" : user_id % 3}"
+          order-inline:
+            type: INLINE
+            props:
+              algorithm-expression: t_order_$->{order_id % 3}
+        key-generators:
+          snowflake:
+            type: SNOWFLAKE

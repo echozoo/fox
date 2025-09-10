@@ -1,0 +1,34 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: rabbitmq
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    active: dev
+nacos:
+  config:
+    server-addr: 127.0.0.1:8848
+    namespace: ca374d89-be4a-441a-92ce-44f94e5d629e
+    group: DEFAULT_GROUP
+    type: yaml
+    data-id: ${spring.application.name}-${spring.profiles.active}.yml
+    auto-refresh: true
+    ext-config:
+      - server-addr: 127.0.0.1:8848
+        namespace: ca374d89-be4a-441a-92ce-44f94e5d629e
+        group: DEFAULT_GROUP
+        type: yaml
+        data-id: common.yml
+        auto-refresh: true
+  discovery:
+    server-addr: 127.0.0.1:8848
+    namespace: ca374d89-be4a-441a-92ce-44f94e5d629e
+    register:
+      service-name: ${spring.application.name}
+    auto-register: true
+
+logging:
+  config: classpath:logback-nacos.xml
